@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tensor Plugin使用"
+title:  "TensorRT Plugin使用"
 date:   2020-06-07 20:03:29 +0800
 ---
 
