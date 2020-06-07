@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-有时间再补充
+一个程序员的一亩三分地。

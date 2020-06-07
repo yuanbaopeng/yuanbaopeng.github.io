@@ -7,7 +7,7 @@ tags:
 categories: xLearn
 mathjax: true
 ---
-
+{% include mathjax.html %}
 ## 写在前面
 
 xLearn是由Chao Ma实现的一个高效的机器学习算法库，这里附上github地址：
@@ -29,11 +29,17 @@ $$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j
 这里记录一下具体推导过程：
 
 $$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j ​$$
+
 $$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j - \sum_{i=1}^n \langle \mathbf{v}_i, \mathbf{v}_i \rangle x_i x_i \right)​$$
+
 $$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_i \right)​$$
+
 $$= \frac{1}{2} \sum_{f=1}^k \left(\sum_{i=1}^n \sum_{j=1}^n v_{if} v_{jf} x_i x_j - \sum_{i=1}^n v_{if} v_{if} x_i x_i \right)​$$
+
 $$= \frac{1}{2}\sum_{f=1}^k\left( \left(\sum_{i=1}^nv_{if} x_i \right) \left( \sum_{j=1}^n v_{jf} x_j \right) - \sum_{i=1}^n \left(v_{if} x_i\right)^2 \right)​$$
+
 $$= \frac{1}{2}\sum_{f=1}^k\left( \left(\sum_{i=1}^nv_{if} x_i \right)^2 - \sum_{i=1}^n \left(v_{if} x_i\right)^2 \right)​$$
+
 $$= \frac{1}{2} \sum_{f=1}^k \left(\left( \sum_{i=1}^n v_{i, f} x_i \right)^2 - \sum_{i=1}^n v_{i, f}^2 x_i^2 \right)​$$
 
 ## xLearn的CalcScore实现
@@ -119,10 +125,15 @@ real_t FMScore::CalcScore(const SparseRow* row,
 }
 ```
 在xLearn中的实现，并非是论文的简化后的公式，具体如下：
+
 $$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j ​$$
+
 $$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j - \sum_{i=1}^n \langle \mathbf{v}_i, \mathbf{v}_i \rangle x_i x_i \right)​$$
+
 $$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_i \right)​$$
+
 $$= \frac{1}{2} \sum_{f=1}^k \left(\sum_{i=1}^n \sum_{j=1}^n v_{if} v_{jf} x_i x_j - \sum_{i=1}^n v_{if} v_{if} x_i x_i \right)​$$
+
 $$= \frac{1}{2}\sum_{f=1}^k\left( \sum_{i=1}^nv_{if} x_i\left( \sum_{j=1}^n v_{jf} x_j -  v_{if} x_i\right ) \right)​$$
 
 第一个for循环是计算$\sum_{j=1}^n v_{jf} x_j$，注意下标是j，结果存于sv的vector中，内层嵌套for循环并没有做求和操作，只是遍历的隐向量。
