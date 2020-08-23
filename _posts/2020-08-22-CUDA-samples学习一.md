@@ -151,7 +151,7 @@ __global__ void cdp_simple_quicksort(unsigned int *data, int left, int right, in
 }
 ```
 
-注意到这里在和核函数内部调用`cdp_simple_quicksort`时，使用了独立的cuda stream
+注意到这里在核函数内部调用`cdp_simple_quicksort`时，使用了独立的cuda stream，stream是调用核函数`<<<...>>>`中的第四个参数
 
 
 
