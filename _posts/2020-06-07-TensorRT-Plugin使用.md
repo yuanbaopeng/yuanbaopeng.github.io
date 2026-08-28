@@ -1,7 +1,9 @@
 ---
 layout: post
-title:  "TensorRT Plugin使用"
+title:  "TensorRT Plugin 使用笔记"
 date:   2020-06-07 20:03:29 +0800
+description: 记录 TensorRT 中 Plugin Creator 的查找、字段传递与插件实例创建流程。
+tags: [TensorRT, C++]
 ---
 
 ```c++

@@ -1,6 +1,7 @@
 ---
-title: xLearn源码分析之FM的CalcScore实现
-date: 2019-01-24 12:15:21
+title: xLearn 源码分析：FM 的 CalcScore 实现
+date: 2019-01-24 12:15:21 +0800
+description: 从 FM 模型公式出发，拆解 xLearn 中 CalcScore 的具体实现与时间复杂度优化。
 tags: 
  - C++
  - xLearn
@@ -151,8 +152,6 @@ $$v_{if}x_i\left(\sum_{j=1}^nv_{jf} x_j-v_{if}x_i\right ) $$
 [http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf](http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf)
 
 [https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html](https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html)
-
-
 
 
 

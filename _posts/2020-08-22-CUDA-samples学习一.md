@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  "CUDA-samples学习一"
+title:  "CUDA Samples 学习（一）"
 date:   2020-08-22 21:41:00 +0800
+description: 从 asyncAPI、动态并行打印与 GPU 快速排序示例理解 CUDA 的异步执行和动态并行。
 categories: CUDA
+tags: [CUDA, GPU]
 ---
 
 # asyncAPI
@@ -152,6 +154,5 @@ __global__ void cdp_simple_quicksort(unsigned int *data, int left, int right, in
 ```
 
 注意到这里在核函数内部调用`cdp_simple_quicksort`时，使用了独立的cuda stream，stream是调用核函数`<<<...>>>`中的第四个参数
-
 
 

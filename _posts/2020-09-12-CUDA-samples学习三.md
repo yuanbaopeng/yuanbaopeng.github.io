@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  "CUDA-samples学习三"
+title:  "CUDA Samples 学习（三）"
 date:   2020-09-12 15:46:00 +0800
+description: 学习 CUDA 与 OpenMP 协同、Tensor Core GEMM 及半精度向量计算的关键实现。
 categories: CUDA
+tags: [CUDA, Tensor Core, GPU]
 ---
 
 # cudaNvSci
@@ -142,7 +144,6 @@ __global__ void scalarProductKernel_native(
 输入是两个元素half2类型的向量，可以看成由二维平面点组成的序列，一个二维平面点就是一个half2。计算逻辑是将上下两组点对应位置做内积然后求和。
 
 使用了两种计算方式，一个是原生计算，另一个是采用half2的指令进行计算。感觉是half对操作符进行了重载，直接用原生操作符就可以计算。
-
 
 
 

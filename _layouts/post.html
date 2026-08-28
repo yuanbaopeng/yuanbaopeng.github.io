@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<article class="article-page">
+  <header class="article-header">
+    <div class="article-narrow">
+      <a class="back-link" href="{{ '/writing/' | relative_url }}"><span aria-hidden="true">←</span> 返回文章</a>
+      <p class="article-kicker">{{ page.categories | first | default: 'TECH NOTE' }}</p>
+      <h1>{{ page.title | escape }}</h1>
+      {% if page.description %}<p class="article-deck">{{ page.description }}</p>{% endif %}
+      <div class="article-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y 年 %-m 月 %-d 日" }}</time>
+        <span>约 {{ content | strip_html | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>
+        {% if page.tags and page.tags != empty %}<span>{{ page.tags | join: ' · ' }}</span>{% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="article-narrow article-content">
+    {{ content }}
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-narrow">
+      <p class="section-kicker">CONTINUE READING</p>
+      <div class="article-nav">
+        {% if page.previous %}
+        <a href="{{ page.previous.url | relative_url }}"><small>上一篇</small><strong>{{ page.previous.title }}</strong></a>
+        {% endif %}
+        {% if page.next %}
+        <a href="{{ page.next.url | relative_url }}"><small>下一篇</small><strong>{{ page.next.title }}</strong></a>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
+</article>

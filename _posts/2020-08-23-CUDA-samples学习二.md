@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  "CUDA-samples学习二"
+title:  "CUDA Samples 学习（二）"
 date:   2020-08-23 08:38:00 +0800
+description: 通过 clock、NVRTC、C++ 集成和函数重载示例继续理解 CUDA 的编译与运行机制。
 categories: CUDA
+tags: [CUDA, GPU]
 ---
 
 # clock
