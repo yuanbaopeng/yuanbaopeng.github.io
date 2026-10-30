@@ -1,0 +1,6 @@
+- slug: training-platform
+  kind: 公开资料研究
+- slug: CUDA-samples学习一
+  kind: 示例学习笔记
+- slug: xlearn源码分析之FM的CalcScore实现
+  kind: 源码分析

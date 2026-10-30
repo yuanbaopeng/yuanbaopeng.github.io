@@ -6,12 +6,13 @@ layout: default
   <header class="article-header">
     <div class="article-narrow">
       <a class="back-link" href="{{ '/writing/' | relative_url }}"><span aria-hidden="true">←</span> 返回文章</a>
-      <p class="article-kicker">{{ page.categories | first | default: 'TECH NOTE' }}</p>
+      {% assign selection = site.data.selected_posts | where: 'slug', page.slug | first %}
+      <p class="article-kicker">{{ selection.kind | default: page.categories.first | default: '技术笔记' }}</p>
       <h1>{{ page.title | escape }}</h1>
       {% if page.description %}<p class="article-deck">{{ page.description }}</p>{% endif %}
       <div class="article-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y 年 %-m 月 %-d 日" }}</time>
-        {% if page.reading_time %}<span>约 {{ page.reading_time }} 分钟阅读</span>{% else %}<span>约 {{ content | strip_html | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>{% endif %}
+        {% if page.reading_time %}<span>约 {{ page.reading_time }} 分钟阅读</span>{% endif %}
         {% if page.tags and page.tags != empty %}<span>{{ page.tags | join: ' · ' }}</span>{% endif %}
       </div>
     </div>
@@ -23,7 +24,7 @@ layout: default
 
   <footer class="article-footer">
     <div class="article-narrow">
-      <p class="section-kicker">CONTINUE READING</p>
+      <p class="section-kicker">继续阅读</p>
       <div class="article-nav">
         {% if page.previous %}
         <a href="{{ page.previous.url | relative_url }}"><small>上一篇</small><strong>{{ page.previous.title }}</strong></a>

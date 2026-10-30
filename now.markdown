@@ -1,43 +1,24 @@
 ---
 layout: default
 title: 此刻
-description: 袁宝鹏当前正在关注、学习和思考的问题。
+description: 最近在想的两个问题：训练系统对 Agent 的可观测性，以及等待 GPU 时如何组织异步性能实验。
 image: /assets/images/og.png
 permalink: /now/
 ---
 
-<section class="page-hero now-hero">
-  <div class="site-shell now-hero-grid">
-    <div>
-      <p class="page-eyebrow">NOW / 此刻</p>
-      <h1>现在，什么问题<br><span>值得认真投入？</span></h1>
-      <p class="page-lede">这不是履历，而是一张动态快照：记录当前真正占据注意力的问题，也提醒自己把时间花在长期重要的方向上。</p>
-    </div>
-    <div class="now-stamp"><span>UPDATED</span><strong>2026.08</strong><small>BEIJING · CHINA</small></div>
+<div class="site-shell document-page">
+  <header class="page-heading">
+    <h1>此刻</h1>
+    <p class="page-lede">记录最近还在想的问题。它们可以继续变化，也不必马上变成文章或项目。</p>
+    <p class="quiet-date">更新于 <time datetime="2026-10-30">2026 年 10 月 30 日</time></p>
+  </header>
+  <div class="prose current-questions">
+    {% for question in site.data.questions %}
+    <section><h2>{{ question.title }}</h2><p>{{ question.summary }}</p><p>{{ question.detail }}</p></section>
+    {% endfor %}
+    <section class="reading-note">
+      <h2>已经写下的一个起点</h2>
+      <p><a href="{% post_url 2026-08-28-training-platform %}">训练任务平台真正难的是什么：从提交作业到交付结果</a>已在 2026 年 8 月发布。这篇公开资料研究梳理了生命周期、调度、可观测性与容错；上面的问题，是沿着这些线索继续想下去。</p>
+    </section>
   </div>
-</section>
-
-<section class="now-section">
-  <div class="site-shell now-grid">
-    <div class="now-index">
-      <p class="section-kicker">CURRENTLY</p>
-      <p>三个正在持续深入的方向。</p>
-    </div>
-    <div class="now-list">
-      <article><span>01</span><div><h2>AI 训练与推理工程</h2><p>关注算力资源如何被更好地组织：任务生命周期、调度效率、可观测性、失败恢复，以及性能与成本之间的平衡。</p><ul><li>Training Platform</li><li>Inference</li><li>Observability</li></ul></div></article>
-      <article><span>02</span><div><h2>Agent 驱动研发流程</h2><p>探索 Agent 怎样从“辅助回答”进入真实工程流程，承担代码理解、任务执行、质量检查与知识沉淀。</p><ul><li>Codex</li><li>Automation</li><li>Developer Experience</li></ul></div></article>
-      <article><span>03</span><div><h2>系统性能与可靠性</h2><p>继续研究复杂系统里最朴素也最困难的问题：瓶颈到底在哪里，失败为什么发生，怎样让系统更容易判断和维护。</p><ul><li>Performance</li><li>Reliability</li><li>Systems Thinking</li></ul></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="question-section">
-  <div class="site-shell question-grid">
-    <div><p class="section-kicker">WRITING QUEUE</p><h2>接下来想写清楚</h2></div>
-    <ol>
-      <li><span>01</span>训练任务平台真正难的是什么？</li>
-      <li><span>02</span>Agent 进入研发流程后，工程师的边界如何变化？</li>
-      <li><span>03</span>从 CUDA 到 AI Infra，我对性能问题的理解发生了什么变化？</li>
-    </ol>
-  </div>
-</section>
+</div>

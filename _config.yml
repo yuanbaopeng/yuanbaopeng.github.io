@@ -21,7 +21,7 @@
 title: 袁宝鹏
 email: yuanbaopeng2008@163.com
 description: >- # this means to ignore newlines until "baseurl:"
-  袁宝鹏的个人技术站，记录 AI 工程、GPU 性能、复杂系统与研发效率实践。
+  袁宝鹏的工程手记，记录训练系统与性能工程中计算、存储和通信之间的取舍，以及一些还在验证的问题。
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.yuanbaopeng.com" # the base hostname & protocol for your site, e.g. http://example.com
 lang: zh-CN
