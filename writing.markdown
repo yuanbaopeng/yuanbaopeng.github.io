@@ -2,7 +2,6 @@
 layout: default
 title: 文章
 description: 训练系统、性能工程与早期源码阅读笔记，按时间慢慢积累。
-image: /assets/images/og.png
 permalink: /writing/
 ---
 

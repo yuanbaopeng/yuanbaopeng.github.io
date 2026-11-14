@@ -1,7 +1,6 @@
 ---
 layout: default
 description: 袁宝鹏的工程手记，记录训练系统与性能工程中计算、存储和通信之间的取舍，以及一些还在验证的问题。
-image: /assets/images/og.png
 ---
 
 <div class="site-shell home-page">
