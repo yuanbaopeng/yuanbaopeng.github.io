@@ -4,7 +4,8 @@
       <span class="brand-name">袁宝鹏</span>
     </a>
     <nav class="site-nav" aria-label="主导航">
-      <a href="{{ '/writing/' | relative_url }}"{% if page.url == '/writing/' %} aria-current="page"{% elsif page.layout == 'post' %} aria-current="location"{% endif %}>文章</a>
+      <a href="{{ '/writing/' | relative_url }}"{% if page.url == '/writing/' %} aria-current="page"{% elsif page.layout == 'post' and page.kind != 'note' %} aria-current="location"{% endif %}>文章</a>
+      <a href="{{ '/notes/' | relative_url }}"{% if page.url == '/notes/' %} aria-current="page"{% elsif page.kind == 'note' %} aria-current="location"{% endif %}>札记</a>
       <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} aria-current="page"{% endif %}>实践</a>
       <a href="{{ '/now/' | relative_url }}"{% if page.url == '/now/' %} aria-current="page"{% endif %}>此刻</a>
       <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>关于</a>

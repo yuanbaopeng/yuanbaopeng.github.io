@@ -2,7 +2,6 @@
 layout: default
 title: 关于
 description: 关于袁宝鹏，以及这本慢慢积累的工程手记。
-image: /assets/images/og.png
 permalink: /about/
 ---
 

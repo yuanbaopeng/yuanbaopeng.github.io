@@ -7,7 +7,7 @@ categories: CUDA
 tags: [CUDA, GPU]
 ---
 
-# asyncAPI
+## asyncAPI
 
 用于说明cuda的异步api的使用，即在cpu上调用cuda异步api是立即就返回的，此时可以在cpu继续干其他的事情。
 
@@ -38,7 +38,7 @@ __global__ void increment_kernel(int *g_data, int inc_value)
 }
 ```
 
-# cdpSimplePrint
+## cdpSimplePrint
 
 cdp是CUDA dynamic parallelism的缩写，CUDA的动态并行，其实是说CUDA在3.5后支持在核函数中再次调用核函数的能力，称为dynamic parallelism。
 
@@ -72,7 +72,7 @@ __global__ void cdp_kernel(int max_depth, int depth, int thread, int parent_uid)
 }
 ```
 
-# cdpSimpleQuicksort
+## cdpSimpleQuicksort
 
 这个sample同上一个sample是类似的，用cdp的能力实现了快排，我这里将`check_results`函数里的资源申请提取到了`main`函数里，资源申请和释放放在同一个函数里，方便管理。结果发现这个sample使用了两种资源申请方式，也是很特别了。
 

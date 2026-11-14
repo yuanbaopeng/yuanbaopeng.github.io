@@ -1,7 +1,6 @@
 ---
 layout: default
 description: 袁宝鹏的工程手记，记录训练系统与性能工程中计算、存储和通信之间的取舍，以及一些还在验证的问题。
-image: /assets/images/og.png
 ---
 
 <div class="site-shell home-page">
@@ -29,6 +28,21 @@ image: /assets/images/og.png
       {% endfor %}
     </div>
   </section>
+  {% assign notes = site.posts | where: 'kind', 'note' %}
+  {% if notes.size > 0 %}
+  <section class="home-section home-notes" aria-labelledby="notes-title">
+    <div class="section-heading">
+      <h2 id="notes-title">对话札记</h2>
+      <a class="text-link" href="{{ '/notes/' | relative_url }}">全部札记 <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="section-note">和 AI 助手聊过、整理后留下来的笔记。</p>
+    <ul class="note-list">
+      {% for note in notes limit: 3 %}
+      <li><time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y.%m.%d' }}</time><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
   <section class="home-section thinking-section" aria-labelledby="thinking-title">
     <div class="section-heading">
       <h2 id="thinking-title">最近在想</h2>

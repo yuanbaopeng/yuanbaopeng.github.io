@@ -2,7 +2,7 @@
 title: Redis BITFIELD 命令的写属性
 date: 2019-01-03 20:49:21 +0800
 description: 通过 SET、INCRBY 与 OVERFLOW 选项，理解 Redis BITFIELD 对位域的写入与溢出处理。
-tags: redis
+tags: [Redis]
 categories: redis
 ---
 
@@ -49,5 +49,3 @@ m：表示为deny-oom，reject command if currently OOM
 [https://redis.io/commands/command](https://redis.io/commands/command)
 
 [http://redisdoc.com/string/bitfield.html](http://redisdoc.com/string/bitfield.html)
-
-[http://redis-db.2338650.n4.nabble.com/BITFIELD-does-not-accept-reads-as-a-slave-td4941.html](http://redis-db.2338650.n4.nabble.com/BITFIELD-does-not-accept-reads-as-a-slave-td4941.html)

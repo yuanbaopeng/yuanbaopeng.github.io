@@ -2,7 +2,6 @@
 layout: default
 title: 实践
 description: 袁宝鹏的源码阅读、技术笔记与公开仓库。
-image: /assets/images/og.png
 permalink: /projects/
 ---
 

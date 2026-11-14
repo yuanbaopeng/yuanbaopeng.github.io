@@ -1,0 +1,18 @@
+# 对话札记的主题表。札记 front matter 里的 `topics` 只能取这里的 id。
+# 新增主题：在这里加一项即可，/notes/ 会自动多出一个分组。
+# 不要修改已经用过的 id，它同时是 /notes/#topic-<id> 的锚点。
+- id: llm-agents
+  name: 大模型与 Agent
+  summary: 模型能做什么、不能做什么，Agent 怎样工作，以及落到工程上的问题。
+- id: ai-coding
+  name: AI 编程
+  summary: 用 AI 写代码、做工程时的方法、工具和体会。
+- id: training-infra
+  name: 训练与推理基础设施
+  summary: NCCL、GPU 低延迟推理等训练与推理系统里的机制和取舍。
+- id: recsys-llm
+  name: 推荐系统与大模型
+  summary: 推荐系统和大模型在问题形态与系统结构上的异同。
+- id: people-teams
+  name: AI 人物与团队
+  summary: 值得了解的人和团队，以及他们做事的方式。

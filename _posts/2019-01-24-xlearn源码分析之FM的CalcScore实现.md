@@ -2,13 +2,10 @@
 title: xLearn 源码分析：FM 的 CalcScore 实现
 date: 2019-01-24 12:15:21 +0800
 description: 从 FM 模型公式出发，拆解 xLearn 中 CalcScore 的具体实现与时间复杂度优化。
-tags: 
- - C++
- - xLearn
+tags: [C++, xLearn]
 categories: xLearn
 mathjax: true
 ---
-{% include mathjax.html %}
 ## 写在前面
 
 xLearn是由Chao Ma实现的一个高效的机器学习算法库，这里附上github地址：
@@ -21,27 +18,27 @@ FM是机器学习中一个在CTR领域中表现突出的模型，最早由Konsta
 
 FM的模型方程为:
 
-$$y(\mathbf{x}) = w_0+ \sum_{i=1}^n w_i x_i + \sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j​$$
+$$y(\mathbf{x}) = w_0+ \sum_{i=1}^n w_i x_i + \sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$$
 
 直观上看，FM的复杂度是 $O(kn^2)$，但是，FM的二次项可以化简，其复杂度可以优化到 $O(kn)$。论文中简化如下式：
 
-$$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j = \frac{1}{2} \sum_{f=1}^k \left(\left( \sum_{i=1}^n v_{i, f} x_i \right)^2 - \sum_{i=1}^n v_{i, f}^2 x_i^2 \right)​$$
+$$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j = \frac{1}{2} \sum_{f=1}^k \left(\left( \sum_{i=1}^n v_{i, f} x_i \right)^2 - \sum_{i=1}^n v_{i, f}^2 x_i^2 \right)$$
 
 这里记录一下具体推导过程：
 
-$$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j ​$$
+$$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j $$
 
-$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j - \sum_{i=1}^n \langle \mathbf{v}_i, \mathbf{v}_i \rangle x_i x_i \right)​$$
+$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j - \sum_{i=1}^n \langle \mathbf{v}_i, \mathbf{v}_i \rangle x_i x_i \right)$$
 
-$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_i \right)​$$
+$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{if} v_{if} x_i x_i \right)$$
 
-$$= \frac{1}{2} \sum_{f=1}^k \left(\sum_{i=1}^n \sum_{j=1}^n v_{if} v_{jf} x_i x_j - \sum_{i=1}^n v_{if} v_{if} x_i x_i \right)​$$
+$$= \frac{1}{2} \sum_{f=1}^k \left(\sum_{i=1}^n \sum_{j=1}^n v_{if} v_{jf} x_i x_j - \sum_{i=1}^n v_{if} v_{if} x_i x_i \right)$$
 
-$$= \frac{1}{2}\sum_{f=1}^k\left( \left(\sum_{i=1}^nv_{if} x_i \right) \left( \sum_{j=1}^n v_{jf} x_j \right) - \sum_{i=1}^n \left(v_{if} x_i\right)^2 \right)​$$
+$$= \frac{1}{2}\sum_{f=1}^k\left( \left(\sum_{i=1}^nv_{if} x_i \right) \left( \sum_{j=1}^n v_{jf} x_j \right) - \sum_{i=1}^n \left(v_{if} x_i\right)^2 \right)$$
 
-$$= \frac{1}{2}\sum_{f=1}^k\left( \left(\sum_{i=1}^nv_{if} x_i \right)^2 - \sum_{i=1}^n \left(v_{if} x_i\right)^2 \right)​$$
+$$= \frac{1}{2}\sum_{f=1}^k\left( \left(\sum_{i=1}^nv_{if} x_i \right)^2 - \sum_{i=1}^n \left(v_{if} x_i\right)^2 \right)$$
 
-$$= \frac{1}{2} \sum_{f=1}^k \left(\left( \sum_{i=1}^n v_{i, f} x_i \right)^2 - \sum_{i=1}^n v_{i, f}^2 x_i^2 \right)​$$
+$$= \frac{1}{2} \sum_{f=1}^k \left(\left( \sum_{i=1}^n v_{i, f} x_i \right)^2 - \sum_{i=1}^n v_{i, f}^2 x_i^2 \right)$$
 
 ## xLearn的CalcScore实现
 ```c++
@@ -127,15 +124,15 @@ real_t FMScore::CalcScore(const SparseRow* row,
 ```
 在xLearn中的实现，并非是论文的简化后的公式，具体如下：
 
-$$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j ​$$
+$$\sum_{i=1}^n \sum_{j=i+1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j $$
 
-$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j - \sum_{i=1}^n \langle \mathbf{v}_i, \mathbf{v}_i \rangle x_i x_i \right)​$$
+$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j - \sum_{i=1}^n \langle \mathbf{v}_i, \mathbf{v}_i \rangle x_i x_i \right)$$
 
-$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_i \right)​$$
+$$= \frac{1}{2}\left(\sum_{i=1}^n \sum_{j=1}^n \sum_{f=1}^k v_{if} v_{jf} x_i x_j - \sum_{i=1}^n \sum_{f=1}^k v_{if} v_{if} x_i x_i \right)$$
 
-$$= \frac{1}{2} \sum_{f=1}^k \left(\sum_{i=1}^n \sum_{j=1}^n v_{if} v_{jf} x_i x_j - \sum_{i=1}^n v_{if} v_{if} x_i x_i \right)​$$
+$$= \frac{1}{2} \sum_{f=1}^k \left(\sum_{i=1}^n \sum_{j=1}^n v_{if} v_{jf} x_i x_j - \sum_{i=1}^n v_{if} v_{if} x_i x_i \right)$$
 
-$$= \frac{1}{2}\sum_{f=1}^k\left( \sum_{i=1}^nv_{if} x_i\left( \sum_{j=1}^n v_{jf} x_j -  v_{if} x_i\right ) \right)​$$
+$$= \frac{1}{2}\sum_{f=1}^k\left( \sum_{i=1}^nv_{if} x_i\left( \sum_{j=1}^n v_{jf} x_j -  v_{if} x_i\right ) \right)$$
 
 第一个for循环是计算$\sum_{j=1}^n v_{jf} x_j$，注意下标是j，结果存于sv的vector中，内层嵌套for循环并没有做求和操作，只是遍历的隐向量。
 

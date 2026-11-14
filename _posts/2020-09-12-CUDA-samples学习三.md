@@ -7,13 +7,13 @@ categories: CUDA
 tags: [CUDA, Tensor Core, GPU]
 ---
 
-# cudaNvSci
+## cudaNvSci
 
 Software Communication Interfaces(Sci)
 
 涉及显存通信及交互的机制，暂时不是很清楚
 
-# cudaOpenMP
+## cudaOpenMP
 
 例子用于展示利用OpenMP在多个GPU上进行工作，OpenMP通过简单的宏指令实现多线程并发，这样在每个线程在不通的GPU上启动核函数，实现多GPU的并发操作。
 
@@ -65,11 +65,11 @@ omp_set_num_threads(num_gpus)
 }
 ```
 
-# cudaTensorCoreGemm
+## cudaTensorCoreGemm
 
 需要cuda9.0及sm7.0以上支持
 
-# fp16ScalarProduct
+## fp16ScalarProduct
 
 半精度使用的例子，fp16的数据类型是half。
 
@@ -79,7 +79,7 @@ cuda特有数据类型half2，其实这是矢量类型，包含两个half类型�
 
 核函数
 
-```c++ 
+```c++
 __global__ void scalarProductKernel_intrinsics(
         half2 const * const a,
         half2 const * const b,

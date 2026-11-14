@@ -2,7 +2,6 @@
 layout: default
 title: 此刻
 description: 最近在想的两个问题：训练系统对 Agent 的可观测性，以及等待 GPU 时如何组织异步性能实验。
-image: /assets/images/og.png
 permalink: /now/
 ---
 

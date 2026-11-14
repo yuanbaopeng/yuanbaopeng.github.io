@@ -7,7 +7,7 @@ categories: CUDA
 tags: [CUDA, GPU]
 ---
 
-# clock
+## clock
 
 用于演示在核函数中使用`clock()`进行性能测量的方法。
 
@@ -66,7 +66,7 @@ __global__ static void timedReduction(const float *input, float *output, clock_t
 }
 ```
 
-# clock_nvrtc
+## clock_nvrtc
 
 这个例子和上一个例子展示的功能是一样，不过使用了另外一种编译运行核函数的方式RTC（Runtime Compilation）运行时编译，可以在程序运行后加载cuda文件，进行编译和运行的技术。
 
@@ -110,7 +110,7 @@ __global__ static void timedReduction(const float *input, float *output, clock_t
 
 核函数申明方式有所不同，开头增加了`extern "C"`，其余和上一个例子一样，去掉了`static`。
 
-# cppIntegration
+## cppIntegration
 
 展示cuda文件如何与已有cpp文件集成，只需在cuda文件中定义c形式接口，就可以在cpp文件中调用
 
@@ -119,6 +119,6 @@ __global__ static void timedReduction(const float *input, float *output, clock_t
 参考资料：[vector-types](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#vector-types)
 
 
-# cppOverload
+## cppOverload
 
 演示了核函数的重载实现，三个同名的核函数，签名不一样。

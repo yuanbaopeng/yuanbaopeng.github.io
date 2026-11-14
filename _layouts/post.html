@@ -2,37 +2,75 @@
 layout: default
 ---
 
+{%- comment -%}
+  Shared by articles (_posts) and 对话札记 (notes/_posts, `kind: note`).
+  Previous/next links stay within the same kind.
+{%- endcomment -%}
+{% if page.kind == 'note' %}
+  {% assign siblings = site.posts | where: 'kind', 'note' %}
+{% else %}
+  {% assign siblings = site.posts | where_exp: 'post', "post.kind != 'note'" %}
+{% endif %}
+{% assign older = nil %}
+{% assign newer = nil %}
+{% for post in siblings %}
+  {% if post.url == page.url %}
+    {% assign older = siblings[forloop.index] %}
+    {% unless forloop.first %}
+      {% assign newer_index = forloop.index0 | minus: 1 %}
+      {% assign newer = siblings[newer_index] %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
 <article class="article-page">
   <header class="article-header">
     <div class="article-narrow">
+      {% if page.kind == 'note' %}
+      <a class="back-link" href="{{ '/notes/' | relative_url }}"><span aria-hidden="true">←</span> 返回札记</a>
+      <p class="article-kicker">对话札记</p>
+      {% else %}
       <a class="back-link" href="{{ '/writing/' | relative_url }}"><span aria-hidden="true">←</span> 返回文章</a>
       {% assign selection = site.data.selected_posts | where: 'slug', page.slug | first %}
       <p class="article-kicker">{{ selection.kind | default: page.categories.first | default: '技术笔记' }}</p>
+      {% endif %}
       <h1>{{ page.title | escape }}</h1>
-      {% if page.description %}<p class="article-deck">{{ page.description }}</p>{% endif %}
+      {% if page.description %}<p class="article-deck">{{ page.description | escape }}</p>{% endif %}
       <div class="article-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y 年 %-m 月 %-d 日" }}</time>
+        {% if page.updated %}<span>更新于 <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%Y 年 %-m 月 %-d 日" }}</time></span>{% endif %}
         {% if page.reading_time %}<span>约 {{ page.reading_time }} 分钟阅读</span>{% endif %}
-        {% if page.tags and page.tags != empty %}<span>{{ page.tags | join: ' · ' }}</span>{% endif %}
+        {% if page.kind == 'note' %}
+        {% for topic_id in page.topics %}
+        {% assign topic = site.data.note_topics | where: 'id', topic_id | first %}
+        {% if topic %}<a href="{{ '/notes/' | relative_url }}#topic-{{ topic.id }}">{{ topic.name }}</a>{% endif %}
+        {% endfor %}
+        {% endif %}
+        {% if page.tags and page.tags != empty %}<span>{{ page.tags | join: ' · ' | escape }}</span>{% endif %}
       </div>
     </div>
   </header>
 
   <div class="article-narrow article-content">
+    {% if page.kind == 'note' %}
+    <p class="note-source">这篇札记整理自我与 AI 助手的对话，经过筛选和改写，仍可能有疏漏；标为“还没确认”的部分尚未核对。</p>
+    {% endif %}
     {{ content }}
   </div>
 
+  {% if older or newer %}
   <footer class="article-footer">
     <div class="article-narrow">
       <p class="section-kicker">继续阅读</p>
       <div class="article-nav">
-        {% if page.previous %}
-        <a href="{{ page.previous.url | relative_url }}"><small>上一篇</small><strong>{{ page.previous.title }}</strong></a>
+        {% if older %}
+        <a href="{{ older.url | relative_url }}"><small>上一篇</small><strong>{{ older.title | escape }}</strong></a>
         {% endif %}
-        {% if page.next %}
-        <a href="{{ page.next.url | relative_url }}"><small>下一篇</small><strong>{{ page.next.title }}</strong></a>
+        {% if newer %}
+        <a href="{{ newer.url | relative_url }}"><small>下一篇</small><strong>{{ newer.title | escape }}</strong></a>
         {% endif %}
       </div>
     </div>
   </footer>
+  {% endif %}
 </article>
