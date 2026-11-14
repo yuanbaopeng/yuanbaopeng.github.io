@@ -121,7 +121,8 @@ p { margin: 0 0 1.2em; }
 .article-content .highlight pre { margin: 0; }
 .article-content img { display: block; margin: 1.8em auto; }
 .article-content table { display: block; max-width: 100%; margin: 1.8em 0; border-collapse: collapse; overflow-x: auto; font-size: 14px; }
-.article-content .MathJax_Display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: 0.5em; text-align: left !important; }
+/* Long display formulas scroll inside their own box instead of widening the page. */
+.article-content mjx-container[jax][display="true"] { max-width: 100%; margin: 1.4em 0; padding-block: 0.3em; overflow-x: auto; overflow-y: hidden; }
 .article-content th, .article-content td { min-width: 8em; padding: 10px 14px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
 .article-content th { background: var(--paper-deep); }
 .article-content hr { margin: 2em 0; border: 0; border-top: 1px solid var(--line); }

@@ -2,7 +2,7 @@
 title: Redis BITFIELD 命令的写属性
 date: 2019-01-03 20:49:21 +0800
 description: 通过 SET、INCRBY 与 OVERFLOW 选项，理解 Redis BITFIELD 对位域的写入与溢出处理。
-tags: redis
+tags: [Redis]
 categories: redis
 ---
 
