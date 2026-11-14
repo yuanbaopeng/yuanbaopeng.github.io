@@ -1,0 +1,28 @@
+name: Build and check
+
+# Verifies that the site builds and passes scripts/check-site.rb.
+# It does not deploy: GitHub Pages builds and publishes master on its own.
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Build
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+      - name: Check
+        run: bundle exec ruby scripts/check-site.rb
