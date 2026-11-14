@@ -42,6 +42,13 @@ defaults:
     values:
       layout: post
       author: 袁宝鹏
+  # 对话札记: every post under notes/_posts. See README.md for the convention.
+  - scope:
+      path: "notes/_posts"
+      type: posts
+    values:
+      kind: note
+      permalink: /notes/:year/:month/:title/
 
 # Jekyll 3 replaces its built-in exclude list with this one, so the usual
 # entries (Gemfile, vendor, ...) have to be repeated here.

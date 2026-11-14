@@ -9,9 +9,10 @@ permalink: /writing/
   <header class="page-heading">
     <h1>文章</h1>
     <p class="page-lede">从源码阅读到系统问题，一些已经写下的思考。早期笔记保留原来的时间与背景。</p>
-    <div class="archive-summary"><span>{{ site.posts | size }} 篇文章</span><a href="{{ '/feed.xml' | relative_url }}">RSS 订阅 <span aria-hidden="true">↗</span></a></div>
+    {% assign articles = site.posts | where_exp: 'post', "post.kind != 'note'" %}
+    <div class="archive-summary"><span>{{ articles | size }} 篇文章</span><a href="{{ '/feed.xml' | relative_url }}">RSS 订阅 <span aria-hidden="true">↗</span></a></div>
   </header>
-  {% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+  {% assign years = articles | group_by_exp: 'post', "post.date | date: '%Y'" %}
   {% for year in years %}
   <section class="archive-year" aria-labelledby="year-{{ year.name }}">
     <h2 id="year-{{ year.name }}">{{ year.name }}</h2>

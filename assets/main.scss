@@ -129,6 +129,20 @@ p { margin: 0 0 1.2em; }
 .practice-list h2 { margin: 0 0 12px; font-size: 23px; }
 .practice-list p:not(.post-meta) { color: var(--muted); }
 
+/* 对话札记: the index groups notes by topic. */
+.empty-note { margin: 0 0 28px; color: var(--muted); font-size: 15px; }
+.notes-recent { padding-bottom: 34px; }
+.topic-nav { display: flex; flex-wrap: wrap; gap: 2px 18px; font-size: 13px; }
+.topic-nav a { padding-block: 4px; }
+.topic-section { padding: 26px 0 28px; border-top: 1px solid var(--line); }
+.topic-section h2 { font-size: 19px; }
+.topic-section .section-note { margin-bottom: 0; }
+.note-list { margin: 16px 0 0; padding: 0; list-style: none; }
+.note-list li { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; align-items: baseline; padding-block: 5px; }
+.note-list time { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.note-list a { color: var(--ink); }
+.note-list a:hover { color: var(--blue); }
+.note-source { color: var(--muted); font-size: 14px; line-height: 1.9; }
 
 /* Articles keep the original content and URLs. */
 .article-narrow { width: calc(100% - 64px); max-width: 760px; margin-inline: auto; }
@@ -138,6 +152,7 @@ p { margin: 0 0 1.2em; }
 .article-header h1 { margin: 0; font-size: 34px; line-height: 1.55; text-wrap: balance; }
 .article-deck { margin: 20px 0 0; color: var(--muted); font-size: 16px; line-height: 1.9; }
 .article-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.article-meta a { color: inherit; text-decoration: underline; text-decoration-color: var(--underline); }
 .article-content { padding: 34px 0 64px; font-size: 17px; line-height: 2; overflow-wrap: anywhere; }
 .article-content > :first-child { margin-top: 0; }
 .article-content h1 { margin: 2em 0 0.8em; font-size: 29px; }

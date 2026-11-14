@@ -1,0 +1,65 @@
+---
+layout: default
+title: 对话札记
+description: 整理自与 AI 助手对话的笔记，按主题归档：大模型与 Agent、AI 编程、训练与推理基础设施、推荐系统与大模型、AI 人物与团队。
+permalink: /notes/
+---
+
+{% assign notes = site.posts | where: 'kind', 'note' %}
+<div class="site-shell document-page notes-page">
+  <header class="page-heading">
+    <h1>对话札记</h1>
+    <p class="page-lede">和 AI 助手聊过的问题里，有一些值得留下来。这里放整理后的版本：写明当时的问题、得到的要点，以及还没确认的部分。</p>
+    <div class="archive-summary">{% if notes.size > 0 %}<span>{{ notes | size }} 篇札记</span>{% endif %}<a href="{{ '/feed.xml' | relative_url }}">RSS 订阅 <span aria-hidden="true">↗</span></a></div>
+  </header>
+
+  {% if notes.size == 0 %}
+  <p class="empty-note">第一篇还在整理。下面是打算归档的几个主题。</p>
+  {% else %}
+  <section class="notes-recent" aria-labelledby="recent-title">
+    <div class="section-heading">
+      <h2 id="recent-title">最近整理</h2>
+      <nav class="topic-nav" aria-label="按主题跳转">
+        {% for topic in site.data.note_topics %}
+        <a href="#topic-{{ topic.id }}">{{ topic.name }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+    <div class="post-list">
+      {% for note in notes limit: 5 %}
+      <article class="post-row">
+        <p class="post-meta">
+          <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y.%m.%d' }}</time>
+          {% for topic_id in note.topics %}
+          {% assign topic = site.data.note_topics | where: 'id', topic_id | first %}
+          {% if topic %}<span>{{ topic.name }}</span>{% endif %}
+          {% endfor %}
+        </p>
+        <h3><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></h3>
+        {% if note.description %}<p class="post-description">{{ note.description | escape }}</p>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="topic-list">
+    {% for topic in site.data.note_topics %}
+    {% assign topic_notes = notes | where_exp: 'note', 'note.topics contains topic.id' %}
+    <section class="topic-section" id="topic-{{ topic.id }}" aria-labelledby="topic-{{ topic.id }}-title">
+      <div class="section-heading">
+        <h2 id="topic-{{ topic.id }}-title">{{ topic.name }}</h2>
+        {% if notes.size > 0 %}<span class="quiet-date">{{ topic_notes | size }} 篇</span>{% endif %}
+      </div>
+      <p class="section-note">{{ topic.summary }}</p>
+      {% if topic_notes.size > 0 %}
+      <ul class="note-list">
+        {% for note in topic_notes %}
+        <li><time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y.%m.%d' }}</time><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </div>
+</div>
