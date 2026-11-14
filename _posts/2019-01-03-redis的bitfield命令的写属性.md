@@ -49,5 +49,3 @@ m：表示为deny-oom，reject command if currently OOM
 [https://redis.io/commands/command](https://redis.io/commands/command)
 
 [http://redisdoc.com/string/bitfield.html](http://redisdoc.com/string/bitfield.html)
-
-[http://redis-db.2338650.n4.nabble.com/BITFIELD-does-not-accept-reads-as-a-slave-td4941.html](http://redis-db.2338650.n4.nabble.com/BITFIELD-does-not-accept-reads-as-a-slave-td4941.html)
