@@ -36,11 +36,21 @@ description: 袁宝鹏的工程手记，记录训练系统与性能工程中计�
       <a class="text-link" href="{{ '/notes/' | relative_url }}">全部札记 <span aria-hidden="true">→</span></a>
     </div>
     <p class="section-note">和 AI 助手聊过、整理后留下来的笔记。</p>
-    <ul class="note-list">
+    <div class="post-list">
       {% for note in notes limit: 3 %}
-      <li><time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y.%m.%d' }}</time><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></li>
+      <article class="post-row">
+        <p class="post-meta">
+          <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y.%m.%d' }}</time>
+          {% for topic_id in note.topics %}
+          {% assign topic = site.data.note_topics | where: 'id', topic_id | first %}
+          {% if topic %}<a href="{{ '/notes/' | relative_url }}#topic-{{ topic.id }}">{{ topic.name | escape }}</a>{% endif %}
+          {% endfor %}
+        </p>
+        <h3><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></h3>
+        {% if note.description %}<p class="post-description">{{ note.description | escape }}</p>{% endif %}
+      </article>
       {% endfor %}
-    </ul>
+    </div>
   </section>
   {% endif %}
   <section class="home-section thinking-section" aria-labelledby="thinking-title">

@@ -97,6 +97,8 @@ p { margin: 0 0 1.2em; }
 .post-row h3 a { color: var(--ink); }
 .post-row h3 a:hover { color: var(--blue); }
 .post-description { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.9; }
+.home-notes .post-meta a { color: inherit; text-decoration: underline; text-decoration-color: var(--underline); }
+.home-notes .post-meta a:hover { color: var(--blue); }
 .question-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 24px; }
 .question-list h3 { margin: 0 0 12px; font-size: 17px; line-height: 1.75; }
 .question-list p { margin: 0; color: var(--muted); font-size: 15px; }
