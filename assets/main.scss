@@ -1,7 +1,6 @@
 ---
 ---
 
-/* A quiet, shared reading surface for pages, notes and code. */
 :root {
   --paper: #f8f6f0;
   --paper-deep: #efede5;
@@ -78,7 +77,6 @@ p { margin: 0 0 1.2em; }
 .site-nav a { padding-block: 10px; color: var(--muted); }
 .site-nav a[aria-current], .site-nav a:hover { color: var(--blue); text-decoration: underline; }
 
-/* Home */
 .home-page { max-width: 800px; }
 .home-intro { padding: 58px 0 45px; max-width: 660px; }
 .intro-label { margin: 0 0 12px; color: var(--muted); font-size: 13px; letter-spacing: 0.15em; }
@@ -107,7 +105,6 @@ p { margin: 0 0 1.2em; }
 .early-links a { padding-block: 4px; text-decoration: underline; text-decoration-color: var(--underline); }
 .quiet-date { margin: 12px 0 0; color: var(--muted); font-size: 13px; }
 
-/* Interior pages */
 .document-page { max-width: 760px; padding-bottom: 72px; }
 .page-heading { padding: 56px 0 34px; border-bottom: 1px solid var(--line); margin-bottom: 32px; }
 .page-heading h1 { margin: 0 0 18px; font-size: 36px; letter-spacing: 0.02em; }
@@ -131,7 +128,6 @@ p { margin: 0 0 1.2em; }
 .practice-list h2 { margin: 0 0 12px; font-size: 23px; }
 .practice-list p:not(.post-meta) { color: var(--muted); }
 
-/* 对话札记: the index groups notes by topic. */
 .empty-note { margin: 0 0 28px; color: var(--muted); font-size: 15px; }
 .notes-recent { padding-bottom: 34px; }
 .topic-nav { display: flex; flex-wrap: wrap; gap: 2px 18px; font-size: 13px; }
@@ -146,7 +142,6 @@ p { margin: 0 0 1.2em; }
 .note-list a:hover { color: var(--blue); }
 .note-source { color: var(--muted); font-size: 14px; line-height: 1.9; }
 
-/* Articles keep the original content and URLs. */
 .article-narrow { width: calc(100% - 64px); max-width: 760px; margin-inline: auto; }
 .article-header { padding: 42px 0 0; }
 .back-link { display: inline-block; margin-bottom: 32px; font-size: 14px; }
@@ -194,7 +189,6 @@ p { margin: 0 0 1.2em; }
 .article-nav small { color: var(--muted); font-size: 12px; }
 .article-nav strong { font-size: 15px; font-weight: 500; overflow-wrap: anywhere; }
 
-/* Footer and the existing not-found page. */
 .site-footer { margin-top: 36px; }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 8px 32px; padding-block: 30px; border-top: 1px solid var(--line); }
 .footer-name { margin: 0 0 4px; font-size: 14px; }
